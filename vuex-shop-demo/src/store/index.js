@@ -197,6 +197,21 @@ export default createStore({
          commit("init", res.data);   
        });
     },
+    getapiInit30({commit}){
+      axios.get(`/api/?start_day=2021-05-30 00:00:00&days=1&mins=30`)
+       .then((res)=>{
+         console.log(res.data);
+         commit("init", res.data);   
+       });
+    },
+    getapiInit60({commit}){
+      axios.get(`/api/?start_day=2021-05-30 00:00:00&days=1&mins=60`)
+       .then((res)=>{
+         console.log(res.data);
+         commit("init", res.data);   
+       });
+    },
+
     getapiInit2({commit}){
       axios.get(`/api/?start_day=2021-06-01 00:00:00&days=1`)
        .then((res)=>{
@@ -204,13 +219,42 @@ export default createStore({
          commit("init", res.data); 
        });
     },
+    getapiInit230({commit}){
+      axios.get(`/api/?start_day=2021-06-01 00:00:00&days=1&mins=30`)
+       .then((res)=>{
+         console.log(res.data);
+         commit("init", res.data);   
+       });
+    },
+    getapiInit260({commit}){
+      axios.get(`/api/?start_day=2021-06-01 00:00:00&days=1&mins=60`)
+       .then((res)=>{
+         console.log(res.data);
+         commit("init", res.data);   
+       });
+    },
+
     getapiInit3({commit}){
       axios.get(`/api/?start_day=2021-06-02 00:00:00&days=1`)
        .then((res)=>{
          console.log(res.data);
          commit("init", res.data);
        });
-    }
+    },
+    getapiInit330({commit}){
+      axios.get(`/api/?start_day=2021-06-02 00:00:00&days=1&mins=30`)
+       .then((res)=>{
+         console.log(res.data);
+         commit("init", res.data);   
+       });
+    },
+    getapiInit360({commit}){
+      axios.get(`/api/?start_day=2021-06-02 00:00:00&days=1&mins=60`)
+       .then((res)=>{
+         console.log(res.data);
+         commit("init", res.data);   
+       });
+    },
   },
   getters: {
     isgetapi(state){
