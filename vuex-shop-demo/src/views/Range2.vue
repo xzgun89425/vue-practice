@@ -1,34 +1,44 @@
 <script>
-import { onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted, reactive, watch } from 'vue';
 import * as echarts from "echarts";
+import { useStore } from "vuex";
 export default {
   name: "echartsBox",
   setup(){
     let echart = echarts;
+    const store = useStore();
+ 
+    const time = computed(()=> store.getters.isTime2);
+    const male = computed(()=> store.getters.isMale2);
+    const female = computed(()=> store.getters.isFemale2);
+    const all = computed(()=> store.getters.isAll2);
+    const isShow = computed(()=> store.getters.isShow2);
+    const timer = '';
+    // const init = () => {
+    //   store.dispatch('getapiInit');
+    // }
 
     onMounted(() => {
-      initChart();
+      console.log(isShow.value);
+      if(isShow.value === true){
+        initChart();
+      }
+      // init();
     });
 
     onUnmounted(() => {
       echart.dispose;
+      clearTimeout(timer);
     });
 
     function initChart() {
+      // console.log(female.value);
       let chart = echart.init(document.getElementById("myEcharts"), "dark");
       // 把配置和数据放这里
       chart.setOption({
         xAxis: {
           type: "category",
-          data: [
-            "週一",
-            "週二",
-            "週三",
-            "週四",
-            "週五",
-            "週六",
-            "週日",
-          ]
+          data: time.value,
         },
         tooltip: {
           trigger: "axis"
@@ -37,18 +47,24 @@ export default {
           type: "value"
         },
         legend: {
-          data:['男','女']
+          data:['男','女','總人數']
         },
         series: [
           {
-            data: [2,3,5,4,1,6,6],
+            data: male.value,
             name: '男',
             type: "line",
             smooth: true,
           },
           {
-            data: [5,1,7,2,3,4,5],
+            data: female.value,
             name: '女',
+            type: "line",
+            smooth: true,
+          },
+          {
+            data: all.value,
+            name: '總人數',
             type: "line",
             smooth: true,
           },
@@ -60,15 +76,18 @@ export default {
       };
     }
 
-    return { initChart };
+    return { initChart , isShow };
   },
 };
 </script>
 <template>
   <div id="RWDpage">
     <!-- <h1>HTML5</h1> -->
-    <div class="echarts-box">
-      <div id="myEcharts" :style="{ width: '900px', height: '300px' }"></div>
+    <div class="echarts-box" v-if="isShow">
+      <div id="myEcharts" :style="{ width: '1100px', height: '500px' }"></div>
+    </div>
+    <div class="echarts-box" v-if="!isShow">
+      <h1>No Data</h1>
     </div>
   </div>
 </template>
@@ -76,7 +95,7 @@ export default {
 <style scoped>
 #RWDpage {
   width: 100%;
-  height: 500px;
+  height: 850px;
   background-color: blueviolet;
   display: flex;
   justify-content: center;

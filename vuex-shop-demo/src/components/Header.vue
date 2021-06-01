@@ -18,24 +18,26 @@ export default {
 <template>
     <header :class="{openMenu : isOpen}">
         <nav>
-            <!-- <h1>Mike</h1> -->
-            <router-link class="title" to="/">Kai</router-link>
+            <h4 class="title">客群人潮分析</h4>
             <a id="moblie_menu" href="javascript:;" @click="HandMenuOpne"></a>
             <div>
-            <router-link to="/rwd">RWD</router-link>
-            <router-link to="/vuejs">VUEJS</router-link>
-            <router-link to="/reactjs">REACTJS</router-link>
-            <router-link to="/html5">HTML5</router-link>
-            <router-link to="/nodejs">NODEJS</router-link>
+            <router-link to="/range0">(0-3)</router-link>
+            <router-link to="/range1">(4-7)</router-link>
+            <router-link to="/range2">(8-13)</router-link>
+            <router-link to="/range3">(14-22)</router-link>
+            <router-link to="/range4">(23-35)</router-link>
+            <router-link to="/range5">(36-45)</router-link>
+            <router-link to="/range6">(46-60)</router-link>
+            <router-link to="/range7">(61up)</router-link>
             </div>
         </nav>
     </header>
 </template>
 
 <style lang="scss" scoped>
-h6{
+h4{
   color: greenyellow;
-  font-size: 40px;
+  font-size: 20px;
 }
 header {
   background-color: #373c3f;
@@ -54,6 +56,8 @@ header {
     width: 1024px;
     height: 100%;
     margin: 0 auto;
+    // display: flex;
+    
     @media screen and (max-width: 1044px) {
       width: 100%;
     }
@@ -65,7 +69,7 @@ header {
       line-height: 97px;
       font-size: 18px;
       float: left;
-      color: #fff;
+      color: rgb(189, 223, 251);
       margin-right: 20px;
       @media screen and (max-width: 1044px){
         margin-left: 5%;
@@ -89,6 +93,9 @@ header {
         float: left;
         color: #fff;
         padding: 0 10px;
+        &.router-link-active {
+          color: coral;
+        }
         @media screen and (max-width: 640px){
           width: 100%;
           height: auto;
@@ -96,6 +103,7 @@ header {
           line-height: 37px;
           text-align: center;
         }
+        
       }
     }
   } 

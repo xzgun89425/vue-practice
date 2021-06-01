@@ -1,4 +1,4 @@
-# vue-test-kai
+# vuex-shop-demo
 
 ## Project setup
 ```
